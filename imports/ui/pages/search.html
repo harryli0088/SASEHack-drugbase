@@ -1,13 +1,20 @@
 <template name="search">
   <div id="dashboard">
 
+    <h1 id="searchTitle" onclick="FlowRouter.go('/')">DrugBase</h1>
+
 
     <div class="padding">
       <form id="searchForm" class="ui form" style="position:relative">
         <div class="field">
           <input type="text" id="searchInput" placeholder="Search...">
         </div>
-        <table id="autoSuggestions">
+        <script>
+        $("#searchInput").focusout(function () {
+          $(this).removeClass("active");
+        });
+        </script>
+        <table id="autoSuggestionsSearch">
           {{#each suggestion}}
           <tr><td id="suggestion-{{name}}" class="suggestion">{{name}}</td></tr>
           {{/each}}
@@ -50,10 +57,10 @@
 
 
     <div>
-      <div id="price" class="dashboardBox" style="display:inline-block">
+      <div id="price" class="dashboardBox" style="display:inline-block;width:46%">
         <h1>Price per Pill</h1>
       </div>
-      <div id="efficacy" class="dashboardBox" style="display:inline-block">
+      <div id="efficacy" class="dashboardBox" style="display:inline-block;margin-right:30px;width:46%">
         <h1>Clinical Trial Efficacy</h1>
       </div>
     </div>
@@ -66,7 +73,6 @@
       </div>
 
       <div id="sideways" style="display:inline-block">
-        <h1>Feedback</h1>
       </div>
 
     </div>

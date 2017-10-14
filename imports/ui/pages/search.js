@@ -9,6 +9,10 @@ Template.search.rendered = function(){
     Session.set("isTyping",Session.get("isTyping")+1);
   });
 
+  $(window).on('click', function(e){
+    Session.set("isTyping",Session.get("isTyping")+1);
+  });
+
   $("input").val(Session.get("search"));
 
   $("input").attr("autocomplete", "off");
@@ -23,7 +27,6 @@ rebuildDash = function (data) {
   barchartPrice(data);
   barchartEfficacy(data);
   donut(data);
-  document.getElementByClass('arc')[0].onmouseover();
 }
 
 
@@ -34,7 +37,7 @@ Template.search.helpers({
     var input = $("#searchInput").val();
     var returnArray = [];
 
-    if($("input").val().length > 2) {
+    if($("input").val().length>1 && $("#searchInput").is(":focus")) {
       for (var i=0; i<diseases.length; ++i) {
         if(diseases[i].toLowerCase().indexOf($("#searchInput").val().toLowerCase()) !== -1) {
           returnArray.push({name:diseases[i]});

@@ -14,6 +14,10 @@ Template.App_home.rendered = function(){
     Session.set("isTyping",Session.get("isTyping")+1);
   });
 
+  $(window).on('click', function(e){
+    Session.set("isTyping",Session.get("isTyping")+1);
+  });
+
   $("input").attr("autocomplete", "off");
 };
 
@@ -25,7 +29,7 @@ Template.App_home.helpers({
     var input = $("#searchInput").val();
     var returnArray = [];
 
-    if($("#searchInput").val().length > 2) {
+    if($("#searchInput").val().length>1  && $("#searchInput").is(":focus")) {
       for (var i=0; i<diseases.length; ++i) {
         if(diseases[i].toLowerCase().indexOf($("#searchInput").val().toLowerCase()) !== -1) {
           returnArray.push({name:diseases[i]});
