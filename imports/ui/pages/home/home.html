@@ -3,8 +3,16 @@
     <h1 id="title">DrugBase</h1>
 
   </div>
-  <div class="padding grayBackground" style="text-align:center">
-    <h1 style="color:teal">Find the best solution</h1>
-    <button class="ui teal button" onclick="FlowRouter.go('Search')">Get started</button>
+  <div class="padding" style="background:#eeeeee">
+    <form id="searchForm" class="ui form">
+      <div class="field">
+        <input type="text" id="searchInput" placeholder="Search...">
+      </div>
+      <table id="autoSuggestions">
+        {{#each suggestion}}
+        <tr><td class="suggestion">{{name}}</td></tr>
+        {{/each}}
+      </table>
+    </form>
   </div>
 </template>
