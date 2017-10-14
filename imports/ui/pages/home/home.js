@@ -7,12 +7,14 @@ import '../../components/info/info.js';
 import '../search.js';
 Session.set("isTyping",0);
 
-var diseases = ["AAAA","BBBB","CCCC","DDDD","DDDEEEE"];
+diseases = ["AAAA","Allergies","BBBB","CCCC","DDDD","DDDEEEE"];
 
 Template.App_home.rendered = function(){
   $(window).on('keydown', function(e){
     Session.set("isTyping",Session.get("isTyping")+1);
   });
+
+  $("input").attr("autocomplete", "off");
 };
 
 
@@ -44,4 +46,13 @@ Template.App_home.events({
   "keydown input": function(event, template){
     Session.set("isTyping",Session.get("isTyping")+1);
   },
+
+  "click .suggestion": function(event, template){
+    $("input").val($(event.target).closest(".suggestion").attr("id").split("-")[1]);
+
+    Session.set("search",$(event.target).closest(".suggestion").attr("id").split("-")[1]);
+
+    FlowRouter.go("search");
+  },
+
 });
