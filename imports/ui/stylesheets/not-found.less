@@ -34,9 +34,14 @@
   }
 }
 
+.w3-top {
+  left: 37px;
+  color: white;
+}
+
 #mainPic {
   height: 800px;
-  // background-image: url("/img/army-mil-56825-2009-11-20-111122.jpg");
+  background-image: url("/img/army-mil-56825-2009-11-20-111122.jpg");
   background-color: #ffffff;
   background-size: cover;
   background-repeat: no-repeat;
@@ -51,10 +56,18 @@
 }
 
 #title {
-  color: rgb(255, 0, 0);
-  padding-top: 30px;
+  color: white;
+  padding-top: 50px;
   padding-left:50px;
-  font-size: 50px;
+  font-size: 60px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#description {
+  color: white;
+  padding-top: 20px;
+  padding-left:50px;
+  font-size: 30px;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -68,15 +81,17 @@
 }
 
 #search {
-  padding-top: 80px;
+  padding-top: 60px;
   z-index: 10;
 }
 
 #autoSuggestions {
   background: white;
   position: absolute;
-  top: 40px;
+  top: 60px;
+  left: 20px;
   border-radius: 3px;
+  border: #cccccc 1px solid;
 }
 
 .suggestion {
@@ -93,7 +108,7 @@
 input[type=text] {
   width: 300px;
   box-sizing: border-box;
-  border: 2px solid rgb(255, 0, 0);
+  border: 2px solid #dddddd;
   border-radius: 4px;
   font-size: 16px;
   background-color: white;
@@ -105,6 +120,8 @@ input[type=text] {
   transition: width 0.4s ease-in-out;
   background-repeat: no-repeat;
   background-attachment: fixed;
+
+  margin-left:20px;
 }
 
 input[type=text]:focus {
@@ -121,7 +138,7 @@ input[type=text]:focus {
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
-    background-image: url("/img/army-mil-56825-2009-11-20-111122.jpg");
+
     min-height: 100%;
 }
 
@@ -195,7 +212,6 @@ input[type=text]:focus {
 }
 
 .dashboardBox {
-  background: #eeeeee;
   border-radius: 5px;
   width: auto;
   margin: 10px;
