@@ -1,24 +1,75 @@
 <template name="search">
-  <div class="padding">
-    <form id="searchForm" class="ui form" style="position:relative">
-      <div class="field">
-        <input type="text" id="searchInput" placeholder="Search...">
-      </div>
-      <table id="autoSuggestions">
-        {{#each suggestion}}
-        <tr><td id="suggestion-{{name}}" class="suggestion">{{name}}</td></tr>
-        {{/each}}
-      </table>
-    </form>
-  </div>
-  <div id="price" class="dashboardBox">
-    <h1>Price per Pill</h1>
-  </div>
-  <div id="efficacy" class="dashboardBox">
-    <h1>Clinical Trial Efficacy</h1>
-  </div>
+  <div id="dashboard">
 
-  <div id="donut" class="dashboardBox">
-    <h1>Reported Usage</h1>
+
+    <div class="padding">
+      <form id="searchForm" class="ui form" style="position:relative">
+        <div class="field">
+          <input type="text" id="searchInput" placeholder="Search...">
+        </div>
+        <table id="autoSuggestions">
+          {{#each suggestion}}
+          <tr><td id="suggestion-{{name}}" class="suggestion">{{name}}</td></tr>
+          {{/each}}
+        </table>
+      </form>
+    </div>
+    <div>
+      {{#each getInfo}}
+      <div class="dashboardBox" style="text-align:left;margin-right:30px;display:flex;position:relative;align-items:center">
+        <div style="max-width:600px">
+          <h1>{{name}}</h1>
+          <p>{{description}}</p>
+          <table id="diseaseTable">
+            <td>
+              <strong>Treatments:</strong>
+              <ul>
+                {{#each treatments}}
+                <li>{{name}}</li>
+                {{/each}}
+              </ul>
+            </td>
+            <td>
+              <strong >Symptoms:</strong>
+              <ul>
+                {{#each symptoms}}
+                <li>{{name}}</li>
+                {{/each}}
+              </ul>
+            </td>
+          </table>
+        </div>
+        <img src="{{imageLink}}" style="position:absolute;right:30px" width="200px" height="200px">
+
+
+      </div>
+      {{/each}}
+    </div>
+    <div>
+      <div id="price" class="dashboardBox" style="display:inline-block">
+        <h1>Price per Pill</h1>
+      </div>
+      <div id="efficacy" class="dashboardBox" style="display:inline-block">
+        <h1>Clinical Trial Efficacy</h1>
+      </div>
+    </div>
+
+
+    <div id="donut" class="dashboardBox">
+      <h1>Reported Usage</h1>
+    </div>
+
+    {{#each getArticles}}
+    <div class="dashboardBox" style="text-align:left;margin-right:15px;display:flex;position:relative;align-items:center;height:250px">
+      <a href="{{link}}">
+        <div>
+          <h1>{{headline}}</h1>
+          <p>{{description}}</p>
+        </div>
+        <img src="{{newsImageLink}}" style="position:absolute;right:30px;top:20px" width="200px" height="200px">
+      </a>
+    </div>
+    {{/each}}
+
   </div>
 </template>
