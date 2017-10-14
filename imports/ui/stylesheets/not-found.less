@@ -21,7 +21,7 @@
     }
     a.gotohomepage {
       background-color: #de4f4f;
-      color: #fff;
+      color: rgba(255, 255, 255, 0);
       width: 180px;
       line-height: 40px;
       display: block;
@@ -42,6 +42,16 @@
 #mainPic {
   height: 800px;
   background-image: url("/img/army-mil-56825-2009-11-20-111122.jpg");
+  background-color: #ffffff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: -1;
+}
+
+#secPic {
+  height: 800px;
+  background-image: url("/img/140610-z-pa893-125_720.jpg");
   background-color: #ffffff;
   background-size: cover;
   background-repeat: no-repeat;
@@ -134,6 +144,7 @@ input[type=text]:focus {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    
 }
 
 /* First image (Logo. Full height) */
@@ -144,8 +155,9 @@ input[type=text]:focus {
 
 /* Second image (Portfolio) */
 .bgimg-2 {
-    background-image: url("/w3images/parallax2.jpg");
+    background-image: url("140610-z-pa893-125_720.jpg");
     min-height: 400px;
+    z-index: 5;
 }
 
 /* Third image (Contact) */
