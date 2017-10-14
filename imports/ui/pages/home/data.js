@@ -8,7 +8,8 @@ allergies = [
     usage:15,
     usageColor:"#E59866",
     priceColor:"#F9E79F",
-    efficacyColor:"#F9E79F"
+    efficacyColor:"#F9E79F",
+    approval:75,
   },
   {
     name:"Benadryl",
@@ -19,7 +20,8 @@ allergies = [
     usage:50,
     usageColor:"#58D68D",
     priceColor:"#F7DC6F",
-    efficacyColor:"#E59866"
+    efficacyColor:"#E59866",
+    approval:78,
   },
   {
     name:"Zyrtec",
@@ -30,7 +32,8 @@ allergies = [
     usage:22,
     usageColor:"#EDBB99",
     priceColor:"#F1948A",
-    efficacyColor:"#58D68D"
+    efficacyColor:"#58D68D",
+    approval:70,
   },
   {
     name:"Loratadine",
@@ -41,7 +44,8 @@ allergies = [
     usage:10,
     usageColor:"#F5B7B1",
     priceColor:"#82E0AA",
-    efficacyColor:"#F9E79F"
+    efficacyColor:"#F9E79F",
+    approval:67,
   }
 ]
 

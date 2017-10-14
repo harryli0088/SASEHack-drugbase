@@ -140,30 +140,30 @@ input[type=text]:focus {
 
 /* Create a Parallax Effect */
 .bgimg-1, .bgimg-2, .bgimg-3 {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 /* First image (Logo. Full height) */
 .bgimg-1 {
 
-    min-height: 100%;
+  min-height: 100%;
 }
 
 /* Second image (Portfolio) */
 .bgimg-2 {
-    background-image: url("140610-z-pa893-125_720.jpg");
-    min-height: 400px;
-    z-index: 5;
+  background-image: url("140610-z-pa893-125_720.jpg");
+  min-height: 400px;
+  z-index: 5;
 }
 
 /* Third image (Contact) */
 .bgimg-3 {
-    background-image: url("/w3images/parallax3.jpg");
-    min-height: 400px;
+  background-image: url("/w3images/parallax3.jpg");
+  min-height: 400px;
 }
 
 .w3-wide {letter-spacing: 10px;}
@@ -171,9 +171,9 @@ input[type=text]:focus {
 
 /* Turn off parallax scrolling for tablets and phones */
 @media only screen and (max-device-width: 1024px) {
-    .bgimg-1, .bgimg-2, .bgimg-3 {
-        background-attachment: scroll;
-    }
+  .bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: scroll;
+  }
 }
 
 
@@ -246,6 +246,31 @@ input[type=text]:focus {
   padding-left: 25px
 }
 
-a {
-  
+.toolTip {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: absolute;
+  display: none;
+  width: auto;
+  height: auto;
+  background: none repeat scroll 0 0 white;
+  border: 0 none;
+  border-radius: 8px 8px 8px 8px;
+  box-shadow: -3px 3px 15px #888888;
+  color: black;
+  font: 12px sans-serif;
+  padding: 5px;
+  text-align: center;
+}
+
+.axisHorizontal path{
+  fill: none;
+}
+
+.axisHorizontal .tick line {
+  stroke-width: 1;
+  stroke: rgba(0, 0, 0, 0.2);
+}
+
+.score {
+  font-size: 50px;
 }

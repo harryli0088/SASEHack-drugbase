@@ -7,7 +7,7 @@ import '../../components/info/info.js';
 import '../search.js';
 Session.set("isTyping",0);
 
-diseases = ["AAAA","Allergies","BBBB","CCCC","DDDD","DDDEEEE"];
+diseases = ["Allergies", "Sleep Apnea", "AIDS/HIV", "Asthma", "Gonorrhea", "Ovarian Cancer", "Leukemia", "Hepatitis A", "Hepatitis B", "Hepatitis C",  "Influenza", "Jaundice", "Leprosy", "Lyme Disease", "Malaria", "Insomnia", "Pneumonia", "Tuberculosis", "Testicular Cancer", "Tetanus", "Ebola"];
 
 Template.App_home.rendered = function(){
   $(window).on('keydown', function(e){
