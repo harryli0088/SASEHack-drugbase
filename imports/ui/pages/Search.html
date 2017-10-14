@@ -1,0 +1,18 @@
+<template name="Search">
+  <div class="padding" style="background:#eeeeee">
+    <form id="searchForm" class="ui form">
+      <div class="field">
+        <input type="text" id="searchInput" placeholder="Search...">
+      </div>
+      {{#if isTyping}}
+        <table id="autoSuggestions">
+          {{#each suggestion}}
+          <tr class="padding">
+            {{name}}
+          </tr>
+          {{/each}}
+        </table>
+      {{/if}}
+    </form>
+  </div>
+</template>

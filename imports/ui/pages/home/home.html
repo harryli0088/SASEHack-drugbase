@@ -1,8 +1,10 @@
 <template name="App_home">
   <div id="mainPic">
     <h1 id="title">DrugBase</h1>
-  </div>
 
-  {{> hello}}
-  {{> info}}
+  </div>
+  <div class="padding grayBackground" style="text-align:center">
+    <h1 style="color:teal">Find the best solution</h1>
+    <button class="ui teal button" onclick="FlowRouter.go('Search')">Get started</button>
+  </div>
 </template>
