@@ -4,9 +4,10 @@ import './home.html';
 
 import '../../components/hello/hello.js';
 import '../../components/info/info.js';
+import '../search.js';
 Session.set("isTyping",0);
 
-var diseases = ["A","B","C"];
+var diseases = ["AAAA","BBBB","CCCC","DDDD","DDDEEEE"];
 
 Template.App_home.rendered = function(){
   $(window).on('keydown', function(e){
@@ -22,7 +23,7 @@ Template.App_home.helpers({
     var input = $("#searchInput").val();
     var returnArray = [];
 
-    if($("#searchInput").val() != "") {
+    if($("#searchInput").val().length > 2) {
       for (var i=0; i<diseases.length; ++i) {
         if(diseases[i].toLowerCase().indexOf($("#searchInput").val().toLowerCase()) !== -1) {
           returnArray.push({name:diseases[i]});

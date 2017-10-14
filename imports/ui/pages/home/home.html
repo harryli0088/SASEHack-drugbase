@@ -2,17 +2,17 @@
   <div id="mainPic">
     <h1 id="title">DrugBase</h1>
 
-  </div>
-  <div class="padding" style="background:#eeeeee">
-    <form id="searchForm" class="ui form">
-      <div class="field">
-        <input type="text" id="searchInput" placeholder="Search...">
-      </div>
-      <table id="autoSuggestions">
-        {{#each suggestion}}
-        <tr><td class="suggestion">{{name}}</td></tr>
-        {{/each}}
-      </table>
-    </form>
+    <div id="search" class="padding">
+      <form id="searchForm" class="ui form" style="position:relative">
+        <div class="field">
+          <input type="text" id="searchInput" placeholder="Search...">
+        </div>
+        <table id="autoSuggestions">
+          {{#each suggestion}}
+          <tr><td id="suggestion-{{name}}" class="suggestion">{{name}}</td></tr>
+          {{/each}}
+        </table>
+      </form>
+    </div>
   </div>
 </template>
