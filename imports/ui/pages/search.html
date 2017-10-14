@@ -1,13 +1,20 @@
 <template name="search">
   <div id="dashboard">
 
+    <h1 id="searchTitle" onclick="FlowRouter.go('/')">DrugBase</h1>
+
 
     <div class="padding">
       <form id="searchForm" class="ui form" style="position:relative">
         <div class="field">
           <input type="text" id="searchInput" placeholder="Search...">
         </div>
-        <table id="autoSuggestions">
+        <script>
+        $("#searchInput").focusout(function () {
+          $(this).removeClass("active");
+        });
+        </script>
+        <table id="autoSuggestionsSearch">
           {{#each suggestion}}
           <tr><td id="suggestion-{{name}}" class="suggestion">{{name}}</td></tr>
           {{/each}}
@@ -16,28 +23,18 @@
     </div>
     <div>
       {{#each getInfo}}
-      <div class="dashboardBox" style="text-align:left;margin-right:30px;display:flex;position:relative;align-items:center">
+      <div class="dashboardBox" style="text-align:left;margin-right:30px;display:flex;position:relative;align-items:center;height:250px">
         <div style="max-width:600px">
           <h1>{{name}}</h1>
-          <p>{{description}}</p>
-          <table id="diseaseTable">
-            <td>
-              <strong>Treatments:</strong>
-              <ul>
-                {{#each treatments}}
-                <li>{{name}}</li>
-                {{/each}}
-              </ul>
-            </td>
-            <td>
-              <strong >Symptoms:</strong>
-              <ul>
-                {{#each symptoms}}
-                <li>{{name}}</li>
-                {{/each}}
-              </ul>
-            </td>
-          </table>
+          <p style="font-size:15px">{{description}}</p>
+        </div>
+        <div style="text-align:left">
+          <h3>Symptoms:</h3>
+          <ul>
+            {{#each symptoms}}
+            <li style="font-size:15px">{{name}}</li>
+            {{/each}}
+          </ul>
         </div>
         <img src="{{imageLink}}" style="position:absolute;right:30px" width="200px" height="200px">
 
@@ -45,28 +42,49 @@
       </div>
       {{/each}}
     </div>
+
+    <div class="dashboardBox" style="margin-right:30px">
+      <h1>Common Treatments</h1>
+      {{#each getMedicineImages}}
+      <div style="display:inline-block">
+        <h2>{{name}}</h2>
+        <img src="{{medicineImageLink}}" height="200px"/>
+        <h3 class="score" style="color:{{color}}">{{score}}</h3>
+      </div>
+
+      {{/each}}
+    </div>
+
+
     <div>
-      <div id="price" class="dashboardBox" style="display:inline-block">
+      <div id="price" class="dashboardBox" style="display:inline-block;width:46%">
         <h1>Price per Pill</h1>
       </div>
-      <div id="efficacy" class="dashboardBox" style="display:inline-block">
+      <div id="efficacy" class="dashboardBox" style="display:inline-block;margin-right:30px;width:46%">
         <h1>Clinical Trial Efficacy</h1>
       </div>
     </div>
 
+    <div class="dashboardBox" style="margin-right:30px;">
 
-    <div id="donut" class="dashboardBox">
-      <h1>Reported Usage</h1>
+
+      <div id="donut" style="display:inline-block">
+        <h1>Reported Usage</h1>
+      </div>
+
+      <div id="sideways" style="display:inline-block">
+      </div>
+
     </div>
 
     {{#each getArticles}}
-    <div class="dashboardBox" style="text-align:left;margin-right:15px;display:flex;position:relative;align-items:center;height:250px">
+    <div class="dashboardBox" style="text-align:left;margin-right:30px;margin-bottom:15px;display:flex;position:relative;align-items:center;height:250px">
       <a href="{{link}}">
         <div>
           <h1>{{headline}}</h1>
           <p>{{description}}</p>
         </div>
-        <img src="{{newsImageLink}}" style="position:absolute;right:30px;top:20px" width="200px" height="200px">
+        <img src="{{newsImageLink}}" style="position:absolute;right:30px;top:20px" height="200px">
       </a>
     </div>
     {{/each}}

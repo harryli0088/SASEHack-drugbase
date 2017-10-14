@@ -9,6 +9,10 @@ Template.search.rendered = function(){
     Session.set("isTyping",Session.get("isTyping")+1);
   });
 
+  $(window).on('click', function(e){
+    Session.set("isTyping",Session.get("isTyping")+1);
+  });
+
   $("input").val(Session.get("search"));
 
   $("input").attr("autocomplete", "off");
@@ -33,7 +37,7 @@ Template.search.helpers({
     var input = $("#searchInput").val();
     var returnArray = [];
 
-    if($("input").val().length > 2) {
+    if($("input").val().length>1 && $("#searchInput").is(":focus")) {
       for (var i=0; i<diseases.length; ++i) {
         if(diseases[i].toLowerCase().indexOf($("#searchInput").val().toLowerCase()) !== -1) {
           returnArray.push({name:diseases[i]});
@@ -76,11 +80,44 @@ Template.search.helpers({
           headline:"Connecticut issues warning to parents about dangers of..",
           description:"Parents and caregivers in Connecticut this month are being warned about the dangers of misusing...",
           link:"http://abcnews.go.com/Health/connecticut-issues-warning-parents-dangers-misusing-antihistamines/story?id=47297931",
-          newsImageLink:"/img/cold-medicine.jpg"
+          newsImageLink:"/img/antihistamines.jpg"
         },
       ];
     }
-  }
+  },
+
+  getMedicineImages: function() {
+    if(Session.get("search").toLowerCase() == "allergies") {
+      return [
+        {
+          name:"Benadryl",
+          medicineImageLink:"/img/UMXkjlSP.png",
+          score:"86",
+          color:"#F4D03F"
+        },
+        {
+          name:"Claritin",
+          medicineImageLink:"/img/Beautiful-Claritin-Logo-91-In-Create-Logo-Free-with-Claritin-Logo.jpg",
+          score:"89",
+          color:"#F4D03F"
+        },
+        {
+          name:"Zyrtec",
+          medicineImageLink:"/img/zyrtec.png"
+          ,
+          score:"80",
+          color:"#F39C12"
+        },
+        {
+          name:"Loratadine",
+          medicineImageLink:"/img/0078742050812_A.jpg"
+          ,
+          score:"95",
+          color:"#58D68D"
+        },
+      ];
+    }
+  },
 });
 
 Template.search.events({
@@ -137,7 +174,7 @@ barchartPrice = function(data) {
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Price per pill:</strong> <span style='color:"+d.priceColor+"'>" + d.price + "</span>";
+    return "<strong>Price per pill:</strong> <span style='color:"+d.priceColor+"'>$" + d.price + "</span>";
   })
 
   d3.select("#price").selectAll("svg").remove();
@@ -585,6 +622,9 @@ donut = function(data) {
   .on("mouseover",mouseover);
 
   function mouseover(d) {
+    sidewaysBarchart(d);
+    console.log(d);
+
 
     var percentage = (100 * d.data.usage / total).toPrecision(3);
     var percentageString = percentage + "%";
@@ -923,5 +963,116 @@ d3.text("./"+str+"-sequences.csv", function(text) {
   createVisualization(json);
 });
 
+
+}
+
+
+
+
+
+sidewaysBarchart = function (item) {
+
+  var data = [
+    {label:"Positive Experience", value:item.data.approval},
+    {label:"Negative Experience", value:100-item.data.approval}
+  ];
+
+  d3.select("#sideways").selectAll("*").remove();
+  d3.select("#sideways").append("h1").html("Feedback");
+
+
+  var div = d3.select("#sideways").append("div").attr("class", "toolTip");
+
+  var axisMargin = 20,
+  margin = 40,
+  valueMargin = 4,
+  width = 600,
+  height = 400,
+  barHeight = (height-axisMargin-margin*2)* 0.4/data.length,
+  barPadding = (height-axisMargin-margin*2)*0.6/data.length,
+  data, bar, svg, scale, xAxis, labelWidth = 0;
+
+  max = d3.max(data, function(d) { return d.value; });
+
+  svg = d3.select('#sideways')
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+
+  bar = svg.selectAll("g")
+  .data(data)
+  .enter()
+  .append("g");
+
+  bar.attr("class", "bar")
+  .attr("cx",0)
+  .attr("transform", function(d, i) {
+    return "translate(" + margin + "," + (i * (barHeight + barPadding) + barPadding) + ")";
+  });
+
+  bar.append("text")
+  .attr("class", "label")
+  .attr("y", barHeight / 2)
+  .attr("dy", ".35em") //vertical align middle
+  .text(function(d){
+    return d.label;
+  }).each(function() {
+    labelWidth = Math.ceil(Math.max(labelWidth, this.getBBox().width));
+  })
+  .style("fill",function(d) {
+    if(d.label == "Positive Experience") {
+      return "#82E0AA";
+    }
+    return "#F1948A";
+  });
+
+  scale = d3.scale.linear()
+  .domain([0, max])
+  .range([0, width - margin*2 - labelWidth]);
+
+  xAxis = d3.svg.axis()
+  .scale(scale)
+  .tickSize(-height + 2*margin + axisMargin)
+  .orient("bottom");
+
+  bar.append("rect")
+  .attr("transform", "translate("+labelWidth+", 0)")
+  .attr("height", barHeight)
+  .attr("width", function(d){
+    return scale(d.value);
+  })
+  .style("fill",function(d) {
+    if(d.label == "Positive Experience") {
+      return "#82E0AA";
+    }
+    return "#F1948A";
+  });
+
+  bar.append("text")
+  .attr("class", "value")
+  .attr("y", barHeight / 2)
+  .attr("dx", -valueMargin + labelWidth + 10) //margin right
+  .attr("dy", ".35em") //vertical align middle
+  .attr("text-anchor", "start")
+  .style("fill",function(d) {
+    if(d.label == "Positive Experience") {
+      return "#82E0AA";
+    }
+    return "#F1948A";
+  })
+  .text(function(d){
+    return (d.value+"%");
+  })
+  .attr("x", function(d){
+    var width = this.getBBox().width;
+    return Math.max(width + valueMargin, scale(d.value));
+  });
+
+
+  svg.insert("g",":first-child")
+  .attr("class", "axisHorizontal")
+  .attr("transform", "translate(" + (margin + labelWidth) + ","+ (height - axisMargin - margin)+")")
+  .call(xAxis);
 
 }

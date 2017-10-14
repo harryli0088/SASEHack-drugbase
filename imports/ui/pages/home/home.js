@@ -7,10 +7,14 @@ import '../../components/info/info.js';
 import '../search.js';
 Session.set("isTyping",0);
 
-diseases = ["AAAA","Allergies","BBBB","CCCC","DDDD","DDDEEEE"];
+diseases = ["Allergies", "Sleep Apnea", "AIDS/HIV", "Asthma", "Gonorrhea", "Ovarian Cancer", "Leukemia", "Hepatitis A", "Hepatitis B", "Hepatitis C",  "Influenza", "Jaundice", "Leprosy", "Lyme Disease", "Malaria", "Insomnia", "Pneumonia", "Tuberculosis", "Testicular Cancer", "Tetanus", "Ebola"];
 
 Template.App_home.rendered = function(){
   $(window).on('keydown', function(e){
+    Session.set("isTyping",Session.get("isTyping")+1);
+  });
+
+  $(window).on('click', function(e){
     Session.set("isTyping",Session.get("isTyping")+1);
   });
 
@@ -25,7 +29,7 @@ Template.App_home.helpers({
     var input = $("#searchInput").val();
     var returnArray = [];
 
-    if($("#searchInput").val().length > 2) {
+    if($("#searchInput").val().length>1  && $("#searchInput").is(":focus")) {
       for (var i=0; i<diseases.length; ++i) {
         if(diseases[i].toLowerCase().indexOf($("#searchInput").val().toLowerCase()) !== -1) {
           returnArray.push({name:diseases[i]});
