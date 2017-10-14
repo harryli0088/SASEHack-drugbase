@@ -35,13 +35,23 @@
 }
 
 #mainPic {
-  height: 750px;
-  background-image: url("/img/army-mil-56825-2009-11-20-111122.jpg");
+  height: 800px;
+  // background-image: url("/img/army-mil-56825-2009-11-20-111122.jpg");
+  background-color: #ffffff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: -1;
+}
+
+#logo {
+  height: 150px;
+  background-image: url("/img/USArmy.png");
   background-size: cover;
 }
 
 #title {
-  color: white;
+  color: rgb(255, 0, 0);
   padding-top: 30px;
   padding-left:50px;
   font-size: 50px;
@@ -54,10 +64,12 @@
 
 .grayBackground {
   background: #eeeeee;
+  z-index: -1;
 }
 
 #search {
-  padding-top: 400px;
+  padding-top: 80px;
+  z-index: 10;
 }
 
 #autoSuggestions {
@@ -76,4 +88,61 @@
 
 .suggestion:hover {
   background-color: #eeeeee;
+}
+
+input[type=text] {
+  width: 300px;
+  box-sizing: border-box;
+  border: 2px solid rgb(255, 0, 0);
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('searchicon.png');
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+input[type=text]:focus {
+  width: 100%;
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image: url("/img/army-mil-56825-2009-11-20-111122.jpg");
+    min-height: 100%;
+}
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+    background-image: url("/w3images/parallax2.jpg");
+    min-height: 400px;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url("/w3images/parallax3.jpg");
+    min-height: 400px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
 }
