@@ -16,10 +16,14 @@ Template.search.rendered = function(){
 
   var str = Session.get("search").toLowerCase();
 
-  barchartPrice(window[str]);
-  barchartEfficacy(window[str]);
-  donut(window[str]);
+  rebuildDash(window[str]);
 };
+
+rebuildDash = function (data) {
+  barchartPrice(data);
+  barchartEfficacy(data);
+  donut(data);
+}
 
 
 Template.search.helpers({
@@ -55,7 +59,9 @@ Template.search.events({
 
     Session.set("search",$(event.target).closest(".suggestion").attr("id").split("-")[1]);
 
-    FlowRouter.go("search");
+    var str = Session.get("search").toLowerCase();
+
+    rebuildDash(window[str]);
   },
 
 });
@@ -93,10 +99,10 @@ barchartPrice = function(data) {
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Price per pill:</strong> <span style='color:"+d.color+"'>" + d.price + "</span>";
+    return "<strong>Price per pill:</strong> <span style='color:"+d.priceColor+"'>" + d.price + "</span>";
   })
 
-  d3.select("#price").selectAll("*").remove();
+  d3.select("#price").selectAll("svg").remove();
 
   var svg = d3.select("#price").append("svg")
   .attr("width", width + margin.left + margin.right)
@@ -127,7 +133,7 @@ barchartPrice = function(data) {
   svg.selectAll(".bar")
   .data(data)
   .enter().append("rect")
-  .attr("fill", function(d) { return d.color; })
+  .attr("fill", function(d) { return d.priceColor; })
   .attr("x", function(d) { return x(d.name); })
   .attr("width", x.rangeBand())
   .attr("y", function(d) { return y(d.price); })
@@ -164,10 +170,10 @@ barchartEfficacy = function(data) {
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>Efficacy:</strong> <span style='color:"+d.color+"'>" + d.efficacy*100 + "% </span>";
+    return "<strong>Efficacy:</strong> <span style='color:"+d.efficacyColor+"'>" + d.efficacy*100 + "% </span>";
   })
 
-  d3.select("#efficacy").selectAll("*").remove();
+  d3.select("#efficacy").selectAll("svg").remove();
 
   var svg = d3.select("#efficacy").append("svg")
   .attr("width", width + margin.left + margin.right)
@@ -198,7 +204,7 @@ barchartEfficacy = function(data) {
   svg.selectAll(".bar")
   .data(data)
   .enter().append("rect")
-  .attr("fill", function(d) { return d.color; })
+  .attr("fill", function(d) { return d.efficacyColor; })
   .attr("x", function(d) { return x(d.name); })
   .attr("width", x.rangeBand())
   .attr("y", function(d) { return y(d.efficacy); })
@@ -518,6 +524,8 @@ var arc = d3.svg.arc()
 var pie = d3.layout.pie()
     .sort(null)
     .value(function(d) { return d.years; });
+
+    d3.select("#donut").select("svg").remove();
 
 var svg = d3.select("#donut").append("svg")
     .attr("width", width)

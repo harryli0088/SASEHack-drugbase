@@ -1,5 +1,5 @@
 <template name="search">
-  <div class="padding grayBackground">
+  <div class="padding">
     <form id="searchForm" class="ui form" style="position:relative">
       <div class="field">
         <input type="text" id="searchInput" placeholder="Search...">
@@ -11,8 +11,14 @@
       </table>
     </form>
   </div>
-  <div id="price" class="dashboardBox"></div>
-  <div id="efficacy" class="dashboardBox"></div>
+  <div id="price" class="dashboardBox">
+    <h1>Price per Pill</h1>
+  </div>
+  <div id="efficacy" class="dashboardBox">
+    <h1>Clinical Trial Efficacy</h1>
+  </div>
 
-  <div id="donut" class="dashboardBox"></div>
+  <div id="donut" class="dashboardBox">
+    <h1>Reported Usage</h1>
+  </div>
 </template>

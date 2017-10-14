@@ -6,16 +6,18 @@ allergies = [
     price:0.33,
     rx:"No",
     years:15,
-    color:"#58D68D"
+    priceColor:"#58D68D",
+    efficacyColor:"#F9E79F"
   },
   {
     name:"Benadryl",
     disease:"Seasonal Allergies",
-    efficacy:0.74,
+    efficacy:0.67,
     price:0.36,
     rx:"No",
     years:70,
-    color:"#ABEBC6"
+    priceColor:"#ABEBC6",
+    efficacyColor:"#E59866"
   },
   {
     name:"Zyrtec",
@@ -24,6 +26,7 @@ allergies = [
     price:0.68,
     rx:"No",
     years:22,
-    color:"#F1948A"
+    priceColor:"#F1948A",
+    efficacyColor:"#58D68D"
   }
 ]
