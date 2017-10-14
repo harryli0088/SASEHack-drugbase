@@ -6,7 +6,7 @@ allergies = [
     price:0.33,
     rx:"No",
     years:"15",
-    color:"green"
+    color:"#58D68D"
   },
   {
     name:"Benadryl",
@@ -15,7 +15,7 @@ allergies = [
     price:0.36,
     rx:"No",
     years:"70",
-    color:"green"
+    color:"#ABEBC6"
   },
   {
     name:"Zyrtec",
@@ -24,6 +24,6 @@ allergies = [
     price:0.68,
     rx:"No",
     years:"22",
-    color:"red"
+    color:"#F1948A"
   }
 ]
